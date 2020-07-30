@@ -1,6 +1,6 @@
 class CashRegister
   
-  attr_accessor :total, :discount, :last_transaction_amount, :items
+  attr_accessor :total, :discount, :price, :items
   
   def initialize(discount = 0)
     @total = 0
@@ -13,20 +13,20 @@ class CashRegister
     if quantity > 1
       i = 0
     while i < quantity
-      @items << title
+      @items << item
       i+=1
     end
     else
       @items << title
     end
     @total += price*quantity
-    @last_transaction_amount = @total
+    @price = @total
     @total
   end
   
   def apply_discount
     if discount > 0
-      @to_take_off = (last_transaction_amount * discount)/ 100
+      @to_take_off = (price * discount)/ 100
       @total -= @to_take_off
       "After the discount, the total comes to $#{@total.to_i}."
     else
@@ -35,6 +35,6 @@ class CashRegister
   end
   
   def void_last_transaction
-    @total -= @last_transaction_amount
+    @total -= @price
   end
 end
