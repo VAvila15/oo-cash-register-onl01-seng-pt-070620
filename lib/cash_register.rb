@@ -8,16 +8,16 @@ class CashRegister
     @items = []
   end
   
-  def add_item(title,price,quantity = 1)
+  def add_item(item,price,quantity = 1)
     
     if quantity > 1
       i = 0
     while i < quantity
-      @items << title
+      @items << item
       i+=1
     end
     else
-      @items << title
+      @items << item
     end
     @total += price*quantity
     @price = @total
